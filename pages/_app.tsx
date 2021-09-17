@@ -3,7 +3,9 @@ import { useEffect } from "react";
 import Head from "next/head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import theme from "theme";
+import theme from "../src/theme";
+import Layout from "components/common/Navbar/Layout";
+import { ModalProvider } from "components/common/ModalManager";
 
 const App = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
@@ -25,7 +27,11 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <ModalProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ModalProvider>
       </ThemeProvider>
     </>
   );

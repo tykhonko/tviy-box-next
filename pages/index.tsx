@@ -1,16 +1,7 @@
-import Head from "next/head";
+import HomePageScreen from "components/screens/HomePageScreen";
 
 const HomePage = () => {
-  return (
-    <>
-      <Head>
-        <title>Tviy Box</title>
-        <meta name="description" content="Tviy Box main page here" />
-      </Head>
-
-      <main>TVIY BOX HERE</main>
-    </>
-  );
+  return <HomePageScreen />;
 };
 
 export default HomePage;
