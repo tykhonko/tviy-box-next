@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import CloseIcon from "@material-ui/icons/Close";
 import {
-  Button,
   Dialog,
   DialogContent,
   DialogProps,
@@ -10,17 +9,15 @@ import {
   Grid,
   IconButton,
   Typography,
-  useMediaQuery,
 } from "@material-ui/core";
 
 interface IProps extends DialogProps {
   item: any;
+  onClose: any;
 }
 
 const ProductModal: React.FC<IProps> = ({ item, onClose, ...props }) => {
   const { img, title, description } = item;
-
-  const isMobile = useMediaQuery((theme: any) => theme.breakpoints.down("sm"));
 
   const handleClose = (e: React.MouseEvent) => {
     onClose(e, null);

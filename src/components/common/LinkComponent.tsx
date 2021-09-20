@@ -20,4 +20,6 @@ const LinkComponent = React.forwardRef<
   );
 });
 
+LinkComponent.displayName = "LinkComponent";
+
 export default LinkComponent;
