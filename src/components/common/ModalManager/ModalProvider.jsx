@@ -1,15 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import ModalContext from "./ModalContext";
 import ModalWrapper from "./ModalWrapper";
 
 const defaultState = {};
 
-interface IProps {
-  children: React.ReactNode;
-}
-
-const ModalProvider: React.FC<IProps> = ({ children }) => {
+const ModalProvider = ({ children }) => {
   const [modals, setModals] = React.useState(defaultState);
 
   const onShow = React.useCallback((id, Modal, withClickAway, modalProps) => {
@@ -44,8 +41,7 @@ const ModalProvider: React.FC<IProps> = ({ children }) => {
   const createActions = React.useCallback(
     (Modal, withClickAway) => {
       const id = Math.random().toString(36);
-      const show = (modalProps: any) =>
-        onShow(id, Modal, withClickAway, modalProps);
+      const show = (modalProps) => onShow(id, Modal, withClickAway, modalProps);
       const close = () => onClose(id);
 
       return [show, close];
@@ -72,6 +68,10 @@ const ModalProvider: React.FC<IProps> = ({ children }) => {
       )}
     </ModalContext.Provider>
   );
+};
+
+ModalProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default React.memo(ModalProvider);

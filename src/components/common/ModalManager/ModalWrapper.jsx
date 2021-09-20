@@ -1,16 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-interface IProps {
-  id: string;
-  Modal: any;
-  open: boolean;
-  withClickAway: boolean;
-  onClose: (id: string) => void;
-  onExited: (id: string) => void;
-  modalProps: any;
-}
-
-const ModalWrapper: React.FC<IProps> = ({
+const ModalWrapper = ({
   id,
   Modal,
   open,
@@ -19,7 +10,7 @@ const ModalWrapper: React.FC<IProps> = ({
   onExited,
   modalProps,
 }) => {
-  const handleClose = (event: any, reason: string) => {
+  const handleClose = (event, reason) => {
     if (!withClickAway && reason === "clickaway") {
       return;
     }
@@ -47,6 +38,17 @@ const ModalWrapper: React.FC<IProps> = ({
       onExited={handleExited}
     />
   );
+};
+
+/* eslint-disable react/forbid-prop-types */
+ModalWrapper.propTypes = {
+  id: PropTypes.string.isRequired,
+  Modal: PropTypes.elementType.isRequired,
+  open: PropTypes.bool.isRequired,
+  withClickAway: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onExited: PropTypes.func.isRequired,
+  modalProps: PropTypes.object,
 };
 
 export default React.memo(ModalWrapper);
